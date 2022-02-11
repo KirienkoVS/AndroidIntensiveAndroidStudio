@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         toastButton = findViewById(R.id.button_toast)
         contButton = findViewById(R.id.button_count)
 
+        if (savedInstanceState != null) {
+            count = savedInstanceState.getInt(TAG)
+            countView.text = savedInstanceState.getInt(TAG).toString()
+        }
+
         toastButton.setOnClickListener {
             Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show()
         }
@@ -31,5 +36,10 @@ class MainActivity : AppCompatActivity() {
             count++
             countView.text = count.toString()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(TAG, count)
     }
 }
