@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidIntensiveAndroidStudio</string>
+    <string name="main_activity_text">Happy Birthday!</string>
 </resources>
