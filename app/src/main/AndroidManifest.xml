@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidIntensiveAndroidStudio">
         <activity
+            android:name=".SecondActivity"
+            android:label="Second Activity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.androidintensiveandroidstudio.MainActivity"/>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

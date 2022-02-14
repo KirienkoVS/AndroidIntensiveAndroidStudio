@@ -1,5 +1,6 @@
 package com.example.androidintensiveandroidstudio
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         val sendButton = findViewById<Button>(R.id.button_main)
         sendButton.setOnClickListener {
             Log.d(TAG, "Button clicked!")
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
         }
     }
 }
