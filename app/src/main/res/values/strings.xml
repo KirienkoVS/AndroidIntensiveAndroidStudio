@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">AndroidIntensiveAndroidStudio</string>
-    <string name="main_activity_text">Happy Birthday!</string>
+    <string name="button_main">Send</string>
 </resources>
