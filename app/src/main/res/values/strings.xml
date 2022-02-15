@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">AndroidIntensiveAndroidStudio</string>
+    <string name="button_main">Add Item</string>
+    <string name="store_button">Find store</string>
+    <string name="cheese">Cheese</string>
+    <string name="rice">Rice</string>
+    <string name="apples">Apples</string>
+    <string name="oranges">Oranges</string>
+    <string name="potato">Potato</string>
+    <string name="bread">Bread</string>
+    <string name="juice">Juice</string>
+    <string name="tomatoes">Tomatoes</string>
+    <string name="bananas">Bananas</string>
+    <string name="salad">Salad</string>
+    <string name="edit_text_hint">type here…</string>
 </resources>
