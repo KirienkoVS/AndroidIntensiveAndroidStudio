@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         val openWebSiteButton = findViewById<Button>(R.id.open_website_button)
         val webSiteEditText = findViewById<TextView>(R.id.website_edittext)
 
+        val openLocationButton = findViewById<Button>(R.id.open_location_button)
+        val locationEditText = findViewById<TextView>(R.id.location_edittext)
+
         openWebSiteButton.setOnClickListener {
             val url = webSiteEditText.text.toString()
             val webPage = Uri.parse(url)
@@ -30,7 +33,19 @@ class MainActivity : AppCompatActivity() {
             try {
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
-                Log.e(TAG, "Application nt found")
+                Log.e(TAG, "Application not found")
+            }
+        }
+
+        openLocationButton.setOnClickListener {
+            val location = locationEditText.text.toString()
+            val addressUri = Uri.parse("geo:0,0?q=$location")
+            val intent = Intent(Intent.ACTION_VIEW, addressUri)
+
+            try {
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                Log.e(TAG, "Application not found")
             }
         }
     }
