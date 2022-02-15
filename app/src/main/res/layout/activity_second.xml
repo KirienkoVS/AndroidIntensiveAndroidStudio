@@ -7,51 +7,103 @@
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
-    <TextView
-        android:id="@+id/text_header"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/cheese_button"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_header"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:text=""
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_header" />
-
-    <EditText
-        android:id="@+id/editText_second"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:inputType="textLongMessage"
-        android:hint="@string/editText_second"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_second"/>
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/cheese"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
+        android:id="@+id/rice_button"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/button_second"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/rice"
+        app:layout_constraintTop_toBottomOf="@id/cheese_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/apples_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/apples"
+        app:layout_constraintTop_toBottomOf="@id/rice_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/oranges_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/oranges"
+        app:layout_constraintTop_toBottomOf="@id/apples_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/potato_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/potato"
+        app:layout_constraintTop_toBottomOf="@id/oranges_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bread_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/bread"
+        app:layout_constraintTop_toBottomOf="@id/potato_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/juice_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/juice"
+        app:layout_constraintTop_toBottomOf="@id/bread_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/tomatoes_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/tomatoes"
+        app:layout_constraintTop_toBottomOf="@id/juice_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bananas_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/bananas"
+        app:layout_constraintTop_toBottomOf="@id/tomatoes_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/salad_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_margin_start"
+        android:layout_marginTop="@dimen/button_margin_top"
+        android:text="@string/salad"
+        app:layout_constraintTop_toBottomOf="@id/bananas_button"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
