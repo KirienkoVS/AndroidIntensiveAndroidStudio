@@ -1,12 +1,13 @@
 package com.example.androidintensiveandroidstudio
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -25,29 +26,28 @@ class MainActivity : AppCompatActivity() {
         replyHeadTextView = findViewById(R.id.text_header_reply)
         replyTextView = findViewById(R.id.text_message_reply)
 
-        sendButton.setOnClickListener {
-            Log.d(TAG, "Button clicked!")
-            val intent = Intent(this, SecondActivity::class.java)
-            val message = messageEditText.text.toString()
-            intent.putExtra(EXTRA_MESSAGE, message)
-            startActivityForResult(intent, TEXT_REQUEST)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == TEXT_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                val reply = data?.getStringExtra(EXTRA_REPLY)
-
+        val startActivityForResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val reply = result.data?.getStringExtra(EXTRA_REPLY)
                 replyHeadTextView.visibility = View.VISIBLE
-
                 replyTextView.apply {
                     text = reply
                     visibility = View.VISIBLE
                 }
             }
         }
+
+        sendButton.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            val message = messageEditText.text.toString()
+            intent.putExtra(EXTRA_MESSAGE, message)
+            startActivityForResult.launch(intent)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        messageEditText.text.clear()
     }
 }
