@@ -4,10 +4,11 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 
 private const val TAG = "MainActivity"
 
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         val openLocationButton = findViewById<Button>(R.id.open_location_button)
         val locationEditText = findViewById<TextView>(R.id.location_edittext)
 
+        val shareTextButton = findViewById<Button>(R.id.share_text_button)
+        val shareEditText = findViewById<TextView>(R.id.share_edittext)
+
         openWebSiteButton.setOnClickListener {
             val url = webSiteEditText.text.toString()
             val webPage = Uri.parse(url)
@@ -33,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
-                Log.e(TAG, "Application not found")
+                Toast.makeText(this, "Application not found", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -45,8 +49,18 @@ class MainActivity : AppCompatActivity() {
             try {
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
-                Log.e(TAG, "Application not found")
+                Toast.makeText(this, "Application not found", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        shareTextButton.setOnClickListener {
+            val text = shareEditText.text.toString()
+            val mimeType = "text/plain"
+            ShareCompat.IntentBuilder(this)
+                .setType(mimeType)
+                .setChooserTitle(getString(R.string.chooser_title))
+                .setText(text)
+                .startChooser()
         }
     }
 }
