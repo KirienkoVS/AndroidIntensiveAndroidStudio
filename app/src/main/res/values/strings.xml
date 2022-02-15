@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AndroidIntensiveAndroidStudio</string>
-    <string name="button_one">Text one</string>
-    <string name="button_two">Text two</string>
-    <string name="button_tree">Text three</string>
+    <string name="button_label_toast">Say hello</string>
+    <string name="button_label_count">Count</string>
+    <string name="count_initial_value">0</string>
+    <string name="toast_message">Hello Toast!</string>
+    <string name="hello_text">Hello!</string>
 </resources>

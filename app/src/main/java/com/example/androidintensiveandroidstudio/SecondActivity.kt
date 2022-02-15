@@ -10,10 +10,7 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        val intent = intent
-        val message = intent.getStringExtra(EXTRA_MESSAGE)
-
-        val textView = findViewById<TextView>(R.id.text_view)
-        textView.text = message
+        val count = findViewById<TextView>(R.id.count)
+        count.text = intent.getStringExtra(EXTRA_MESSAGE)
     }
 }
