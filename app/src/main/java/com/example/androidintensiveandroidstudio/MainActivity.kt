@@ -11,17 +11,15 @@ private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
     private var count: Int = 0
-    private lateinit var countView: TextView
-    private lateinit var toastButton: Button
-    private lateinit var contButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        countView = findViewById(R.id.show_count)
-        toastButton = findViewById(R.id.button_toast)
-        contButton = findViewById(R.id.button_count)
+        val countView = findViewById<TextView>(R.id.show_count)
+        val toastButton = findViewById<Button>(R.id.button_toast)
+        val countButton = findViewById<Button>(R.id.button_count)
+        val zeroButton = findViewById<Button>(R.id.button_zero)
 
         if (savedInstanceState != null) {
             count = savedInstanceState.getInt(TAG)
@@ -32,9 +30,23 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show()
         }
 
-        contButton.setOnClickListener {
+        countButton.setOnClickListener {
             count++
             countView.text = count.toString()
+            zeroButton.setBackgroundColor(resources.getColor(R.color.red))
+
+            if (count % 2 == 0) {
+                it.setBackgroundColor(resources.getColor(R.color.teal_200))
+            } else {
+                it.setBackgroundColor(resources.getColor(R.color.purple_500))
+            }
+        }
+
+        zeroButton.setOnClickListener {
+            countView.text = "0"
+            count = 0
+            it.setBackgroundColor(resources.getColor(R.color.purple_500))
+            countButton.setBackgroundColor(resources.getColor(R.color.purple_500))
         }
     }
 
