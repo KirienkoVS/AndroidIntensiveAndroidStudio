@@ -1,15 +1,18 @@
 package com.example.androidintensiveandroidstudio
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ShareCompat
+import androidx.core.view.iterator
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,30 +22,47 @@ class MainActivity : AppCompatActivity() {
 
         title = "Implicit intents"
 
-        val openWebSiteButton = findViewById<Button>(R.id.open_website_button)
-        val webSiteEditText = findViewById<TextView>(R.id.website_edittext)
+        val storeButton = findViewById<Button>(R.id.store_button)
+        val locationEditText = findViewById<TextView>(R.id.location_edit_text)
+        val addButton = findViewById<Button>(R.id.button_main)
+        val constraintLayout = findViewById<ViewGroup>(R.id.constraint_layout)
 
-        val openLocationButton = findViewById<Button>(R.id.open_location_button)
-        val locationEditText = findViewById<TextView>(R.id.location_edittext)
-
-        val shareTextButton = findViewById<Button>(R.id.share_text_button)
-        val shareEditText = findViewById<TextView>(R.id.share_edittext)
-
-        val takePictureButton = findViewById<Button>(R.id.take_picture_button)
-
-        openWebSiteButton.setOnClickListener {
-            val url = webSiteEditText.text.toString()
-            val webPage = Uri.parse(url)
-            val intent = Intent(Intent.ACTION_VIEW, webPage)
-
-            try {
-                startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
-                Toast.makeText(this, "Application not found", Toast.LENGTH_SHORT).show()
+        val textViewsList = mutableListOf<TextView>()
+        for (view in constraintLayout) {
+            if (view is TextView) {
+                textViewsList.add(view)
             }
         }
 
-        openLocationButton.setOnClickListener {
+        val startActivityForResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val reply = result.data?.getStringExtra(EXTRA_REPLY)
+
+                if (textViewsList.first().text.isBlank()) {
+                    textViewsList.first().apply {
+                        text = reply
+                        visibility = View.VISIBLE
+                    }
+                } else {
+                    val emptyTextView = textViewsList.first { it.text.isBlank() }
+                    emptyTextView.apply {
+                        text = reply
+                        visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
+
+        addButton.setOnClickListener {
+            val itemsList = textViewsList.filter { it.text.isNotBlank() }
+            if (itemsList.size > 10) {
+                recreate()
+            }
+            startActivityForResult.launch(Intent(this, SecondActivity::class.java))
+        }
+
+        storeButton.setOnClickListener {
             val location = locationEditText.text.toString()
             val addressUri = Uri.parse("geo:0,0?q=$location")
             val intent = Intent(Intent.ACTION_VIEW, addressUri)
@@ -52,21 +72,6 @@ class MainActivity : AppCompatActivity() {
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(this, "Application not found", Toast.LENGTH_SHORT).show()
             }
-        }
-
-        shareTextButton.setOnClickListener {
-            val text = shareEditText.text.toString()
-            val mimeType = "text/plain"
-            ShareCompat.IntentBuilder(this)
-                .setType(mimeType)
-                .setChooserTitle(getString(R.string.chooser_title))
-                .setText(text)
-                .startChooser()
-        }
-
-        takePictureButton.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivity(intent)
         }
     }
 }
